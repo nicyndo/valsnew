@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Valentine Invitation</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Poppins:wght@300;400;500&display=swap');
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: radial-gradient(circle at top, #ffd6e8, #000);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* 📱 FRAME */
+.phone {
+  width: 390px;
+  height: 844px;
+  background: #fff;
+  border-radius: 24px;
+  overflow: hidden;
+  position: relative;
+  border: 2px solid #ffd1e1;
+}
+
+/* 🌸 FLOATING HEARTS (static) */
+.heart {
+  position: absolute;
+  font-size: 22px;
+  opacity: 0.25;
+  animation: float 8s ease-in-out infinite;
+  pointer-events: none;
+}
+.heart:nth-child(1) { top: 60px; left: 40px; }
+.heart:nth-child(2) { top: 200px; right: 30px; animation-delay: 1s; }
+.heart:nth-child(3) { bottom: 220px; left: 50px; animation-delay: 2s; }
+.heart:nth-child(4) { bottom: 80px; right: 60px; animation-delay: 3s; }
+
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-16px); }
+}
+
+/* ---------- COVER ---------- */
+.cover {
+  position: absolute;
+  inset: 0;
+  background:
+    url('https://www.transparenttextures.com/patterns/paper-fibers.png'),
+    linear-gradient(160deg, #fff0f5, #ffd6e8);
+  padding: 28px;
+  transition: transform 1s ease;
+  z-index: 2;
+}
+
+.cover-inner {
+  height: 100%;
+  background: #fff;
+  border-radius: 20px;
+  padding: 40px 22px;
+  box-shadow: 0 15px 40px rgba(236,64,122,.25);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.cover h1 {
+  font-family: 'Playfair Display', serif;
+  color: #c2185b;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.tofrom {
+  text-align: center;
+  color: #b23a48;
+  font-size: 15px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+}
+
+button {
+  border: none;
+  border-radius: 30px;
+  padding: 12px 20px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.play {
+  background: #ffd6e8;
+}
+
+.open {
+  background: linear-gradient(135deg, #ec407a, #d81b60);
+  color: white;
+}
+
+/* ---------- LETTER ---------- */
+.letter {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #ffe6ef, #fff);
+  padding: 28px;
+  transform: translateY(100%);
+  transition: transform 1s ease;
+}
+
+.letter.show {
+  transform: translateY(0);
+}
+
+.letter-card {
+  height: 100%;
+  background:
+    url('https://www.transparenttextures.com/patterns/soft-wallpaper.png'),
+    #fff;
+  border-radius: 22px;
+  padding: 36px 22px;
+  box-shadow: 0 12px 35px rgba(236,64,122,.18);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.letter h2 {
+  font-family: 'Playfair Display', serif;
+  color: #c2185b;
+  text-align: center;
+}
+
+.letter p {
+  margin-top: 18px;
+  font-size: 15px;
+  line-height: 1.75;
+  color: #5c2b35;
+  text-align: center;
+}
+
+.divider {
+  margin: 18px auto;
+  font-size: 18px;
+  opacity: .4;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  font-size: 14px;
+}
+
+.badge {
+  background: #ffe0eb;
+  padding: 8px 16px;
+  border-radius: 20px;
+  color: #b23a48;
+}
+
+.answer {
+  display: flex;
+  justify-content: center;
+  gap: 22px;
+  margin-top: 10px;
+}
+
+.yes {
+  background: linear-gradient(135deg, #ec407a, #d81b60);
+  color: white;
+}
+
+.no {
+  background: #ffe0e9;
+  color: #b23a48;
+  position: relative;
+}
+
+.no:hover {
+  color: transparent;
+}
+.no:hover::after {
+  content: "Yes ❤️";
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ec407a;
+}
+
+.back {
+  margin-top: 10px;
+  background: transparent;
+  color: #c2185b;
+  font-size: 13px;
+}
+
+/* ========================= */
+/* ❤️ ADDED: FLOATING LOVE */
+/* ========================= */
+.floating-love {
+  position: fixed;
+  bottom: -40px;
+  font-size: 20px;
+  animation: loveFloat linear forwards;
+  pointer-events: none;
+  opacity: 0.8;
+  z-index: 9999;
+}
+
+@keyframes loveFloat {
+  0%   { transform: translateY(0) scale(1); opacity: 0; }
+  10%  { opacity: 1; }
+  100% { transform: translateY(-110vh) scale(1.5); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="phone">
+
+  <div class="heart">💗</div>
+  <div class="heart">💖</div>
+  <div class="heart">💞</div>
+  <div class="heart">💗</div>
+
+  <audio id="music" loop preload="auto">
+    <source src="from-this-moment.mp3" type="audio/mpeg">
+  </audio>
+
+  <div class="cover" id="cover">
+    <div class="cover-inner">
+      <h1>Happy Valentine’s Day</h1>
+
+      <div class="tofrom">
+        <p><strong>To:</strong> Grace 💗</p>
+        <p><strong>From:</strong> Nicho</p>
+      </div>
+
+      <div class="buttons">
+        <button class="play" onclick="playMusic()">▶ Play</button>
+        <button class="open" onclick="openInvitation()">Open ✉️</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="letter" id="letter">
+    <div class="letter-card">
+      <div>
+        <h2>Hi my valentine,</h2>
+        <div class="divider">❀ ❀ ❀</div>
+
+        <p>
+          Valentine’s Day feels more meaningful when I imagine spending it with you.<br><br>
+          This Valentine’s Day, I’d love to slow down the world for a while —
+          to share a quiet dinner, warm conversations,
+          and a moment that belongs only to us.<br><br>
+          <strong>Will you have dinner with me?</strong>
+        </p>
+      </div>
+
+      <div>
+        <div class="info">
+          <div class="badge">📅 Friday, 14 February</div>
+          <div class="badge">⏰ 19:00 WIB</div>
+          <div class="badge">👗 Pink & White</div>
+        </div>
+
+        <div class="answer">
+          <button class="yes" onclick="showYes()">Yes ❤️</button>
+          <button class="no" onclick="showYes()">No 😢</button>
+        </div>
+
+        <button class="back" onclick="backToCover()">← Back to cover</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const music = document.getElementById('music');
+
+function playMusic() {
+  try {
+    music.muted = false;
+    music.volume = 1;
+    music.play();
+  } catch (e) {
+    console.log('Audio blocked');
+  }
+}
+
+function openInvitation() {
+  playMusic();
+  document.getElementById('cover').style.transform = 'translateY(-100%)';
+  document.getElementById('letter').classList.add('show');
+}
+
+function backToCover() {
+  document.getElementById('cover').style.transform = 'translateY(0)';
+  document.getElementById('letter').classList.remove('show');
+}
+
+function showYes() {
+  alert('💖 Yay! I can’t wait to spend this moment with you 💖');
+}
+
+/* ❤️ ADDED: generate floating love */
+function spawnLove() {
+  const love = document.createElement('div');
+  love.className = 'floating-love';
+  love.innerHTML = ['❤️','💖','💘','💕','💞'][Math.floor(Math.random()*5)];
+  love.style.left = Math.random() * 100 + 'vw';
+  love.style.animationDuration = (4 + Math.random()*3) + 's';
+  document.body.appendChild(love);
+  setTimeout(() => love.remove(), 7000);
+}
+setInterval(spawnLove, 800);
+</script>
+
+</body>
+</html>
